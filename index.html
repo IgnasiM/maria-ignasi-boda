@@ -6,7 +6,6 @@
   <title>Ignasi &amp; Maria · 11.09.2026</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
   <script>
@@ -243,7 +242,9 @@
           </svg>
           <span>Copiar IBAN</span>
         </button>
-        <canvas id="qr-transfer" class="qr-canvas"></canvas>
+        <img class="qr-canvas" width="148" height="148"
+          src="https://api.qrserver.com/v1/create-qr-code/?size=148x148&color=3D3229&bgcolor=F5F0EB&qzone=1&data=ES4315830001139069798502"
+          alt="QR transferència">
       </div>
 
       <!-- ── Panel: Revolut ── -->
@@ -258,7 +259,9 @@
           </svg>
           <span>Copiar tag</span>
         </button>
-        <canvas id="qr-revolut" class="qr-canvas"></canvas>
+        <img class="qr-canvas" width="148" height="148"
+          src="https://api.qrserver.com/v1/create-qr-code/?size=148x148&color=3D3229&bgcolor=F5F0EB&qzone=1&data=https://revolut.me/ignasi63qc"
+          alt="QR Revolut">
       </div>
 
       <!-- ── Panel: Bizum ── -->
@@ -291,7 +294,9 @@
           </svg>
           <span>Copiar adreça</span>
         </button>
-        <canvas id="qr-bitcoin" class="qr-canvas"></canvas>
+        <img class="qr-canvas" width="148" height="148"
+          src="https://api.qrserver.com/v1/create-qr-code/?size=148x148&color=3D3229&bgcolor=F5F0EB&qzone=1&data=bitcoin:bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"
+          alt="QR Bitcoin">
       </div>
 
     </div>
@@ -327,9 +332,6 @@
     tab.classList.add('active', 'text-earth');
     tab.classList.remove('text-taupe');
     document.getElementById('panel-' + id).classList.add('active');
-
-    // Genera el QR quan el panel és visible
-    generateQR(id);
   }
 
   /* ── Copy to clipboard ──────────────────── */
@@ -365,24 +367,6 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 60000);
-
-  /* ── QR codes ───────────────────────────── */
-  const qrOpts = { width: 148, margin: 1, color: { dark: '#3D3229', light: '#F5F0EB' } };
-  const qrData = {
-    transfer: 'ES4315830001139069798502',
-    revolut:  'https://revolut.me/ignasi63qc',
-    bitcoin:  'bitcoin:bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh',
-  };
-  const qrGenerated = {};
-
-  function generateQR(id) {
-    if (qrGenerated[id] || !qrData[id]) return;
-    QRCode.toCanvas(document.getElementById('qr-' + id), qrData[id], qrOpts);
-    qrGenerated[id] = true;
-  }
-
-  // Genera el QR del primer tab visible ara
-  generateQR('transfer');
 
   /* ── Lucide icons ───────────────────────── */
   lucide.createIcons();
