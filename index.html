@@ -1,220 +1,392 @@
 <!doctype html>
 <html lang="ca" class="h-full">
- <head>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maria &amp; Ignasi</title>
+  <title>Ignasi &amp; Maria · 11.09.2026</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&amp;family=Jost:wght@300;400;500&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            cream: '#F5F0EB',
-            warm: '#E8DDD3',
-            taupe: '#B8A99A',
-            earth: '#8C7B6B',
-            dark: '#3D3229',
+            cream:  '#F5F0EB',
+            warm:   '#E8DDD3',
+            taupe:  '#B8A99A',
+            earth:  '#8C7B6B',
+            dark:   '#3D3229',
           }
         }
       }
     }
   </script>
+
   <style>
-    .font-serif-elegant { font-family: 'Cormorant Garamond', Georgia, serif; }
-    .font-sans-clean { font-family: 'Jost', sans-serif; }
-    .fade-in { animation: fadeIn 1.2s ease both; }
-    .fade-in-d1 { animation: fadeIn 1.2s ease 0.2s both; }
-    .fade-in-d2 { animation: fadeIn 1.2s ease 0.4s both; }
-    .fade-in-d3 { animation: fadeIn 1.2s ease 0.6s both; }
-    .fade-in-d4 { animation: fadeIn 1.2s ease 0.8s both; }
-    @keyframes fadeIn { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
-    .divider-line { width: 60px; height: 1px; background: #B8A99A; }
-    .gift-tab { transition: all 0.3s ease; }
-    .gift-tab.active { border-bottom: 2px solid #8C7B6B; color: #3D3229; }
-    .gift-panel { display: none; }
-    .gift-panel.active { display: block; animation: fadeIn 0.4s ease both; }
+    /* ── Fonts ── */
+    .font-serif  { font-family: 'Cormorant Garamond', Georgia, serif; }
+    .font-sans   { font-family: 'Jost', sans-serif; }
+
+    /* ── Animations ── */
+    .fade-in    { animation: fadeUp 1.2s ease both; }
+    .fade-in-d1 { animation: fadeUp 1.2s ease 0.20s both; }
+    .fade-in-d2 { animation: fadeUp 1.2s ease 0.40s both; }
+    .fade-in-d3 { animation: fadeUp 1.2s ease 0.60s both; }
+    .fade-in-d4 { animation: fadeUp 1.2s ease 0.80s both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Divider ── */
+    .divider { width: 60px; height: 1px; background: #B8A99A; }
+
+    /* ── Gift tabs ── */
+    .gift-tab {
+      transition: all 0.25s ease;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .gift-tab.active {
+      border-bottom-color: #8C7B6B;
+      color: #3D3229;
+    }
+
+    /* ── Gift panels ── */
+    .gift-panel         { display: none; }
+    .gift-panel.active  { display: block; animation: fadeUp 0.35s ease both; }
+
+    /* ── Copy button ── */
+    .copy-btn {
+      display:       inline-flex;
+      align-items:   center;
+      gap:           6px;
+      background:    none;
+      border:        1px solid #B8A99A;
+      border-radius: 99px;
+      padding:       6px 18px;
+      font-family:   'Jost', sans-serif;
+      font-size:     10px;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:         #8C7B6B;
+      cursor:        pointer;
+      transition:    all 0.25s ease;
+    }
+    .copy-btn:hover  { background: #E8DDD3; }
+    .copy-btn.copied { border-color: #8C7B6B; color: #3D3229; }
+
+    /* ── QR canvas ── */
+    .qr-canvas {
+      border-radius: 10px;
+      display:       block;
+      margin:        18px auto 0;
+    }
+
+    /* ── Global ── */
     html, body { scroll-behavior: smooth; }
   </style>
-  <style>body { box-sizing: border-box; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
- <body class="h-full font-sans-clean bg-cream text-dark">
-  <div id="app-wrapper" class="w-full h-full overflow-auto"><!-- Hero -->
-   <section class="w-full flex flex-col items-center justify-center py-24 md:py-36 px-6 text-center fade-in">
+</head>
+
+<body class="h-full font-sans bg-cream text-dark">
+<div id="app-wrapper" class="w-full h-full overflow-auto">
+
+
+  <!-- ══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════ -->
+  <section class="w-full flex flex-col items-center justify-center py-24 md:py-36 px-6 text-center fade-in">
     <p class="text-taupe tracking-[0.35em] uppercase text-xs mb-6 font-light">Ens casem</p>
-    <h1 id="el-names" class="font-serif-elegant text-5xl md:text-7xl font-light text-dark leading-tight">Maria <span class="italic text-earth">&amp;</span> Ignasi</h1>
-    <div class="divider-line mx-auto my-8"></div>
-    <p id="el-date" class="text-earth tracking-[0.2em] uppercase text-base font-light">11 de setembre de 2026</p>
-   </section><!-- Countdown -->
-   <section class="w-full py-12 px-6 fade-in-d1">
+    <h1 id="el-names" class="font-serif text-5xl md:text-7xl font-light text-dark leading-tight">
+      Ignasi <span class="italic text-earth">&amp;</span> Maria
+    </h1>
+    <div class="divider mx-auto my-8"></div>
+    <p id="el-date" class="text-earth tracking-[0.2em] uppercase text-base font-light">
+      11 de setembre de 2026
+    </p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       COMPTE ENRERE
+  ══════════════════════════════════════════ -->
+  <section class="w-full py-12 px-6 fade-in-d1">
     <div class="max-w-md mx-auto flex justify-center gap-8 text-center">
-     <div>
-      <span id="cd-days" class="font-serif-elegant text-4xl text-dark block">—</span><span class="text-taupe text-xs tracking-widest uppercase">dies</span>
-     </div>
-     <div>
-      <span id="cd-hours" class="font-serif-elegant text-4xl text-dark block">—</span><span class="text-taupe text-xs tracking-widest uppercase">hores</span>
-     </div>
-     <div>
-      <span id="cd-mins" class="font-serif-elegant text-4xl text-dark block">—</span><span class="text-taupe text-xs tracking-widest uppercase">min</span>
-     </div>
+      <div>
+        <span id="cd-days"  class="font-serif text-4xl text-dark block">—</span>
+        <span class="text-taupe text-xs tracking-widest uppercase">dies</span>
+      </div>
+      <div>
+        <span id="cd-hours" class="font-serif text-4xl text-dark block">—</span>
+        <span class="text-taupe text-xs tracking-widest uppercase">hores</span>
+      </div>
+      <div>
+        <span id="cd-mins"  class="font-serif text-4xl text-dark block">—</span>
+        <span class="text-taupe text-xs tracking-widest uppercase">min</span>
+      </div>
     </div>
-   </section><!-- Ceremony -->
-   <section class="w-full py-16 px-6 fade-in-d2">
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       CERIMÒNIA
+  ══════════════════════════════════════════ -->
+  <section class="w-full py-16 px-6 fade-in-d2">
     <div class="max-w-lg mx-auto text-center">
-     <p class="text-taupe tracking-[0.3em] uppercase text-xs mb-4">Cerimònia</p>
-     <h2 class="font-serif-elegant text-3xl md:text-4xl font-light mb-3"><i data-lucide="church" class="inline w-5 h-5 text-taupe mr-2 align-middle" style="margin-top:-4px"></i> <span id="el-ceremony-place">Parròquia de les Santes Juliana i Semproniana</span></h2>
-     <p class="text-earth text-sm mb-6"><span id="el-ceremony-time">12:30h</span></p><a href="https://maps.app.goo.gl/LCyuRw68fmund3AH7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-earth border border-taupe rounded-full px-5 py-2 hover:bg-warm transition"> <i data-lucide="map-pin" class="w-4 h-4"></i> COM ARRIBAR-HI </a>
+      <p class="text-taupe tracking-[0.3em] uppercase text-xs mb-4">Cerimònia</p>
+      <h2 class="font-serif text-3xl md:text-4xl font-light mb-3">
+        <i data-lucide="church" class="inline w-5 h-5 text-taupe mr-2 align-middle" style="margin-top:-4px"></i>
+        <span id="el-ceremony-place">Parròquia de les Santes Juliana i Semproniana</span>
+      </h2>
+      <p class="text-earth text-sm mb-6">
+        <span id="el-ceremony-time">12:30h</span>
+      </p>
+      <a href="https://maps.app.goo.gl/LCyuRw68fmund3AH7" target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 text-sm text-earth border border-taupe rounded-full px-5 py-2 hover:bg-warm transition">
+        <i data-lucide="map-pin" class="w-4 h-4"></i> COM ARRIBAR-HI
+      </a>
     </div>
-   </section>
-   <div class="divider-line mx-auto"></div><!-- Banquet -->
-   <section class="w-full py-16 px-6 fade-in-d3">
+  </section>
+
+  <div class="divider mx-auto"></div>
+
+
+  <!-- ══════════════════════════════════════════
+       BANQUET
+  ══════════════════════════════════════════ -->
+  <section class="w-full py-16 px-6 fade-in-d3">
     <div class="max-w-lg mx-auto text-center">
-     <p class="text-taupe tracking-[0.3em] uppercase text-xs mb-4">Banquet</p>
-     <h2 class="font-serif-elegant text-3xl md:text-4xl font-light mb-3"><i data-lucide="trees" class="inline w-5 h-5 text-taupe mr-2 align-middle" style="margin-top:-4px"></i> <span id="el-banquet-place">Mas Corts<br>
-        Sant Fost de Campsentelles</span></h2>
-     <p class="text-earth text-sm mb-6">Després de la cerimònia</p><a href="https://maps.app.goo.gl/3vNqfJZPxvVbwMUi7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-earth border border-taupe rounded-full px-5 py-2 hover:bg-warm transition"> <i data-lucide="map-pin" class="w-4 h-4"></i> COM ARRIBAR-HI </a>
+      <p class="text-taupe tracking-[0.3em] uppercase text-xs mb-4">Banquet</p>
+      <h2 class="font-serif text-3xl md:text-4xl font-light mb-3">
+        <i data-lucide="trees" class="inline w-5 h-5 text-taupe mr-2 align-middle" style="margin-top:-4px"></i>
+        <span id="el-banquet-place">Mas Corts<br>Sant Fost de Campsentelles</span>
+      </h2>
+      <p class="text-earth text-sm mb-6">Després de la cerimònia</p>
+      <a href="https://maps.app.goo.gl/99Ub8CkN3VUE4oSg9" target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 text-sm text-earth border border-taupe rounded-full px-5 py-2 hover:bg-warm transition">
+        <i data-lucide="map-pin" class="w-4 h-4"></i> COM ARRIBAR-HI
+      </a>
     </div>
-   </section>
-   <div class="divider-line mx-auto"></div><!-- Confirmation -->
-   <section class="w-full py-16 px-6 fade-in-d4">
+  </section>
+
+  <div class="divider mx-auto"></div>
+
+
+  <!-- ══════════════════════════════════════════
+       CONFIRMACIÓ
+  ══════════════════════════════════════════ -->
+  <section class="w-full py-16 px-6 fade-in-d4">
     <div class="max-w-lg mx-auto text-center">
-     <p class="text-taupe tracking-[0.3em] uppercase text-xs mb-4">Confirmació</p>
-     <h2 class="font-serif-elegant text-3xl md:text-4xl font-light mb-3"><i data-lucide="check-circle" class="inline w-5 h-5 text-taupe mr-2 align-middle" style="margin-top:-4px"></i> Ens confirmes la teva assistència?</h2>
-     <p class="text-earth text-sm mb-6">Ens agradaria saber si podràs venir.</p><a href="https://forms.gle/XetCh3UDUPCwFk3T9" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-cream bg-earth rounded-full px-6 py-3 hover:bg-dark transition font-medium"> <i data-lucide="send" class="w-4 h-4"></i> CONFIRMAR ASSISTÈNCIA </a>
+      <p class="text-taupe tracking-[0.3em] uppercase text-xs mb-4">Confirmació</p>
+      <h2 class="font-serif text-3xl md:text-4xl font-light mb-3">
+        <i data-lucide="check-circle" class="inline w-5 h-5 text-taupe mr-2 align-middle" style="margin-top:-4px"></i>
+        Ens confirmes la teva assistència?
+      </h2>
+      <p class="text-earth text-sm mb-6">Ens agradaria saber si podràs venir.</p>
+      <a href="https://forms.gle/XetCh3UDUPCwFk3T9" target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 text-sm text-cream bg-earth rounded-full px-6 py-3 hover:bg-dark transition font-medium">
+        <i data-lucide="send" class="w-4 h-4"></i> CONFIRMAR ASSISTÈNCIA
+      </a>
     </div>
-   </section>
-   <div class="divider-line mx-auto"></div><!-- Gift -->
-   <section class="w-full py-16 px-6 fade-in-d4">
+  </section>
+
+  <div class="divider mx-auto"></div>
+
+
+  <!-- ══════════════════════════════════════════
+       REGAL
+  ══════════════════════════════════════════ -->
+  <section class="w-full py-16 px-6 fade-in-d4">
     <div class="max-w-md mx-auto text-center">
-     <p class="text-taupe tracking-[0.3em] uppercase text-xs mb-4">Regal</p>
-     <h2 class="font-serif-elegant text-3xl font-light mb-3"><i data-lucide="gift" class="inline w-5 h-5 text-taupe mr-2 align-middle" style="margin-top:-4px"></i> El millor regal és la vostra presència</h2>
-     <p id="el-gift-msg" class="text-earth text-sm mb-8 leading-relaxed">Tanmateix, si voleu tenir un detall aquí teniu algunes opcions.</p><!-- Tabs -->
-     <div class="flex justify-center gap-1 mb-6 border-b border-warm"><button onclick="switchTab('transfer')" id="tab-transfer" class="gift-tab active px-4 py-2 text-xs tracking-widest uppercase text-earth">Transferència</button> <button onclick="switchTab('revolut')" id="tab-revolut" class="gift-tab px-4 py-2 text-xs tracking-widest uppercase text-taupe">Revolut</button> <button onclick="switchTab('bizum')" id="tab-bizum" class="gift-tab px-4 py-2 text-xs tracking-widest uppercase text-taupe">Bizum</button> <button onclick="switchTab('bitcoin')" id="tab-bitcoin" class="gift-tab px-4 py-2 text-xs tracking-widest uppercase text-taupe">Bitcoin</button>
-     </div><!-- Panels -->
-     <div id="panel-transfer" class="gift-panel active bg-warm/40 rounded-xl p-6 text-left">
-      <p class="text-xs text-taupe uppercase tracking-widest mb-2">Transferència bancària</p>
-      <p class="font-serif-elegant text-lg text-dark tracking-wide">ES43 1583 0001 1390 6979 8502</p>
-      <p class="text-earth text-xs mt-2">Titular: Ignasi Mallén Alberdi</p>
-     </div>
-     <div id="panel-revolut" class="gift-panel bg-warm/40 rounded-xl p-6 text-left">
-      <p class="text-xs text-taupe uppercase tracking-widest mb-2">Revolut Tag</p>
-      <p class="font-serif-elegant text-xl text-dark">@ignasi63qc</p>
-     </div>
-     <div id="panel-bizum" class="gift-panel bg-warm/40 rounded-xl p-6 text-left">
-      <p class="text-xs text-taupe uppercase tracking-widest mb-2">Bizum</p>
-      <p class="font-serif-elegant text-xl text-dark">+34 654 976 942</p>
-      <p class="text-earth text-xs mt-2">Ignasi Mallén</p>
-     </div>
-     <div id="panel-bitcoin" class="gift-panel bg-warm/40 rounded-xl p-6 text-left">
-      <p class="text-xs text-taupe uppercase tracking-widest mb-2">Bitcoin</p>
-      <p class="font-serif-elegant text-sm text-dark break-all">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</p>
-      <p class="text-earth text-xs mt-2">Envia BTC a l'adreça indicada.</p>
-     </div>
+      <p class="text-taupe tracking-[0.3em] uppercase text-xs mb-4">Regal</p>
+      <h2 class="font-serif text-3xl font-light mb-3">
+        <i data-lucide="gift" class="inline w-5 h-5 text-taupe mr-2 align-middle" style="margin-top:-4px"></i>
+        El millor regal és la vostra presència
+      </h2>
+      <p id="el-gift-msg" class="text-earth text-sm mb-8 leading-relaxed">
+        Tanmateix, si voleu tenir un detall aquí teniu algunes opcions.
+      </p>
+
+      <!-- Tabs -->
+      <div class="flex justify-center gap-1 mb-6 border-b border-warm">
+        <button onclick="switchTab('transfer')" id="tab-transfer"
+          class="gift-tab active px-4 py-2 text-xs tracking-widest uppercase text-earth">
+          Transferència
+        </button>
+        <button onclick="switchTab('revolut')" id="tab-revolut"
+          class="gift-tab px-4 py-2 text-xs tracking-widest uppercase text-taupe">
+          Revolut
+        </button>
+        <button onclick="switchTab('bizum')" id="tab-bizum"
+          class="gift-tab px-4 py-2 text-xs tracking-widest uppercase text-taupe">
+          Bizum
+        </button>
+        <button onclick="switchTab('bitcoin')" id="tab-bitcoin"
+          class="gift-tab px-4 py-2 text-xs tracking-widest uppercase text-taupe">
+          Bitcoin
+        </button>
+      </div>
+
+      <!-- ── Panel: Transferència ── -->
+      <div id="panel-transfer" class="gift-panel active bg-warm/40 rounded-xl p-6 text-left">
+        <p class="text-xs text-taupe uppercase tracking-widest mb-2">Transferència bancària</p>
+        <p id="val-iban" class="font-serif text-lg text-dark tracking-wide">ES43 1583 0001 1390 6979 8502</p>
+        <p class="text-earth text-xs mt-1">Titular: Ignasi Mallén Alberdi</p>
+        <button class="copy-btn mt-4" onclick="copyVal('val-iban', this)">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+            <rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-6A1.5 1.5 0 0 0 2 3.5v6A1.5 1.5 0 0 0 3.5 11H5"
+                  stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          <span>Copiar IBAN</span>
+        </button>
+        <canvas id="qr-transfer" class="qr-canvas"></canvas>
+      </div>
+
+      <!-- ── Panel: Revolut ── -->
+      <div id="panel-revolut" class="gift-panel bg-warm/40 rounded-xl p-6 text-left">
+        <p class="text-xs text-taupe uppercase tracking-widest mb-2">Revolut Tag</p>
+        <p id="val-revolut" class="font-serif text-xl text-dark">@ignasi63qc</p>
+        <button class="copy-btn mt-4" onclick="copyVal('val-revolut', this)">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+            <rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-6A1.5 1.5 0 0 0 2 3.5v6A1.5 1.5 0 0 0 3.5 11H5"
+                  stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          <span>Copiar tag</span>
+        </button>
+        <canvas id="qr-revolut" class="qr-canvas"></canvas>
+      </div>
+
+      <!-- ── Panel: Bizum ── -->
+      <div id="panel-bizum" class="gift-panel bg-warm/40 rounded-xl p-6 text-left">
+        <p class="text-xs text-taupe uppercase tracking-widest mb-2">Bizum</p>
+        <p id="val-bizum" class="font-serif text-xl text-dark">+34 654 976 942</p>
+        <p class="text-earth text-xs mt-1">Ignasi Mallén</p>
+        <button class="copy-btn mt-4" onclick="copyVal('val-bizum', this)">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+            <rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-6A1.5 1.5 0 0 0 2 3.5v6A1.5 1.5 0 0 0 3.5 11H5"
+                  stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          <span>Copiar telèfon</span>
+        </button>
+      </div>
+
+      <!-- ── Panel: Bitcoin ── -->
+      <div id="panel-bitcoin" class="gift-panel bg-warm/40 rounded-xl p-6 text-left">
+        <p class="text-xs text-taupe uppercase tracking-widest mb-2">Bitcoin</p>
+        <p id="val-bitcoin" class="font-serif text-sm text-dark break-all leading-relaxed">
+          bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
+        </p>
+        <p class="text-earth text-xs mt-1">Envia BTC a l'adreça indicada.</p>
+        <button class="copy-btn mt-4" onclick="copyVal('val-bitcoin', this)">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+            <rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-6A1.5 1.5 0 0 0 2 3.5v6A1.5 1.5 0 0 0 3.5 11H5"
+                  stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          <span>Copiar adreça</span>
+        </button>
+        <canvas id="qr-bitcoin" class="qr-canvas"></canvas>
+      </div>
+
     </div>
-   </section><!-- Footer -->
-   <section class="w-full py-16 px-6 text-center">
-    <p class="font-serif-elegant text-2xl italic text-earth">Us hi esperem amb molta il·lusió</p>
-    <p class="text-taupe text-xs mt-4 tracking-widest">M &amp; I — 2026</p>
-   </section>
-  </div>
-  <script>
-    // Gift tabs
-    function switchTab(id) {
-      document.querySelectorAll('.gift-tab').forEach(t => { t.classList.remove('active'); t.classList.add('text-taupe'); t.classList.remove('text-earth'); });
-      document.querySelectorAll('.gift-panel').forEach(p => p.classList.remove('active'));
-      document.getElementById('tab-' + id).classList.add('active');
-      document.getElementById('tab-' + id).classList.remove('text-taupe');
-      document.getElementById('tab-' + id).classList.add('text-earth');
-      document.getElementById('panel-' + id).classList.add('active');
-    }
+  </section>
 
-    // Countdown
-    function updateCountdown() {
-      const target = new Date('2026-09-11T12:30:00');
-      const now = new Date();
-      const diff = target - now;
-      if (diff <= 0) { document.getElementById('cd-days').textContent = '🎉'; return; }
-      const d = Math.floor(diff / 86400000);
-      const h = Math.floor((diff % 86400000) / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      document.getElementById('cd-days').textContent = d;
-      document.getElementById('cd-hours').textContent = h;
-      document.getElementById('cd-mins').textContent = m;
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 60000);
 
-    // Element SDK
-    const defaultConfig = {
-      couple_names: 'Maria & Ignasi',
-      wedding_date: '11 de setembre de 2026',
-      ceremony_time: '12:30h',
-      ceremony_place: 'Parròquia de les Santes Juliana i Semproniana',
-      banquet_place: 'Mas Corts, Sant Fost de Campsentelles',
-      gift_message: 'El millor regal és la vostra presència, però si voleu tenir un detall, aquí teniu algunes opcions.',
-      background_color: '#F5F0EB',
-      surface_color: '#E8DDD3',
-      text_color: '#3D3229',
-      accent_color: '#8C7B6B',
-      muted_color: '#B8A99A',
-      font_family: 'Cormorant Garamond',
-      font_size: 16
-    };
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <section class="w-full py-16 px-6 text-center">
+    <p class="font-serif text-2xl italic text-earth">Us hi esperem amb molta il·lusió</p>
+    <p class="text-taupe text-xs mt-4 tracking-widest">I &amp; M · 11.09.2026</p>
+  </section>
 
-    function applyConfig(config) {
-      const c = { ...defaultConfig, ...config };
-      // Text
-      document.getElementById('el-names').innerHTML = c.couple_names.replace('&', '<span class="italic" style="color:' + c.accent_color + '">&</span>');
-      document.getElementById('el-date').textContent = c.wedding_date;
-      document.getElementById('el-ceremony-time').textContent = c.ceremony_time;
-      document.getElementById('el-ceremony-place').textContent = c.ceremony_place;
-      document.getElementById('el-banquet-place').textContent = c.banquet_place;
-      document.getElementById('el-gift-msg').textContent = c.gift_message;
 
-      // Colors
-      document.getElementById('app-wrapper').style.backgroundColor = c.background_color;
-      document.querySelectorAll('.gift-panel').forEach(p => p.style.backgroundColor = c.surface_color + '66');
-      document.querySelectorAll('.divider-line').forEach(d => d.style.backgroundColor = c.muted_color);
-      document.body.style.color = c.text_color;
+</div><!-- /#app-wrapper -->
 
-      // Font
-      const ff = c.font_family + ', Georgia, serif';
-      document.querySelectorAll('.font-serif-elegant').forEach(el => el.style.fontFamily = ff);
-      const bs = c.font_size;
-      document.getElementById('el-names').style.fontSize = (bs * 3.5) + 'px';
-      document.getElementById('el-gift-msg').style.fontSize = bs + 'px';
-    }
 
-    window.elementSdk.init({
-      defaultConfig,
-      onConfigChange: async (config) => applyConfig(config),
-      mapToCapabilities: (config) => ({
-        recolorables: [
-          { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
-          { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
-          { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
-          { get: () => config.accent_color || defaultConfig.accent_color, set: (v) => { config.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); } },
-          { get: () => config.muted_color || defaultConfig.muted_color, set: (v) => { config.muted_color = v; window.elementSdk.setConfig({ muted_color: v }); } },
-        ],
-        borderables: [],
-        fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
-        fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } },
-      }),
-      mapToEditPanelValues: (config) => new Map([
-        ['couple_names', config.couple_names || defaultConfig.couple_names],
-        ['wedding_date', config.wedding_date || defaultConfig.wedding_date],
-        ['ceremony_time', config.ceremony_time || defaultConfig.ceremony_time],
-        ['ceremony_place', config.ceremony_place || defaultConfig.ceremony_place],
-        ['banquet_place', config.banquet_place || defaultConfig.banquet_place],
-        ['gift_message', config.gift_message || defaultConfig.gift_message],
-      ])
+<!-- ══════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════ -->
+<script>
+
+  /* ── Gift tabs ──────────────────────────── */
+  function switchTab(id) {
+    document.querySelectorAll('.gift-tab').forEach(t => {
+      t.classList.remove('active', 'text-earth');
+      t.classList.add('text-taupe');
     });
+    document.querySelectorAll('.gift-panel').forEach(p => p.classList.remove('active'));
 
-    lucide.createIcons();
-  </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9eedcb4a40d128ef',t:'MTc3NjYyMTQ3Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+    const tab = document.getElementById('tab-' + id);
+    tab.classList.add('active', 'text-earth');
+    tab.classList.remove('text-taupe');
+    document.getElementById('panel-' + id).classList.add('active');
+
+    // Genera el QR quan el panel és visible
+    generateQR(id);
+  }
+
+  /* ── Copy to clipboard ──────────────────── */
+  function copyVal(elId, btn) {
+    const text = document.getElementById(elId).textContent.trim();
+    navigator.clipboard.writeText(text).then(() => {
+      const span = btn.querySelector('span');
+      const prev = span.textContent;
+      span.textContent = 'Copiat!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        span.textContent = prev;
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  /* ── Countdown ──────────────────────────── */
+  function updateCountdown() {
+    const target = new Date('2026-09-11T12:30:00');
+    const now    = new Date();
+    const diff   = target - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent = '🎉';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000)  / 60000);
+    document.getElementById('cd-days').textContent  = d;
+    document.getElementById('cd-hours').textContent = h;
+    document.getElementById('cd-mins').textContent  = m;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+
+  /* ── QR codes ───────────────────────────── */
+  const qrOpts = { width: 148, margin: 1, color: { dark: '#3D3229', light: '#F5F0EB' } };
+  const qrData = {
+    transfer: 'ES4315830001139069798502',
+    revolut:  'https://revolut.me/ignasi63qc',
+    bitcoin:  'bitcoin:bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh',
+  };
+  const qrGenerated = {};
+
+  function generateQR(id) {
+    if (qrGenerated[id] || !qrData[id]) return;
+    QRCode.toCanvas(document.getElementById('qr-' + id), qrData[id], qrOpts);
+    qrGenerated[id] = true;
+  }
+
+  // Genera el QR del primer tab visible ara
+  generateQR('transfer');
+
+  /* ── Lucide icons ───────────────────────── */
+  lucide.createIcons();
+
+</script>
+</body>
 </html>
